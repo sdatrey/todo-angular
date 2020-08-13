@@ -1,0 +1,28 @@
+<div class="mat-app-background container">
+    <div class="row">
+      <div class="col-sm-12">
+        <form [formGroup]="inputForm" class="example-form" >
+            <input matInput 
+            #newTodo
+            formControlName="to-do">
+          <button (click) ="addnewTodo(newTodo.value)">Add new to-do</button>
+        </form>
+       <table>
+         <tr>
+           <th>label</th>
+           <th>completed</th>
+           <th>Action</th>
+         </tr>
+         <tr 
+         *ngFor="let todo of todos">
+         <td>{{ todo.label }}</td>
+         <td>{{ todo.completed }}</td>
+         <td>
+           <button (click)= "deleteTodo(todo)">delete</button>
+         </td>
+        </tr>
+       </table>
+      </div>
+    </div>
+  </div>
+ 
