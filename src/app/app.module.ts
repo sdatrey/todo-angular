@@ -9,6 +9,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { InputComponent } from './input/input.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InputComponent } from './input/input.component';
     MatInputModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatCheckboxModule
 
   
   ],

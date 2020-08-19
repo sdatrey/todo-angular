@@ -2,23 +2,31 @@
     <div class="row">
       <div class="col-sm-12">
         <form [formGroup]="inputForm" class="example-form" >
-            <input matInput 
+            <!-- <input matInput 
             #newTodo
-            formControlName="to-do">
-          <button (click) ="addnewTodo(newTodo.value)">Add new to-do</button>
+            formControlName="todo"> -->
+            <mat-form-field class="example-full-width">
+              <mat-label>Add Todo</mat-label>
+              <input matInput placeholder="Ex. Pizza" value="Sushi"
+              #newTodo
+              formControlName="todo">
+            </mat-form-field>
+              <button (click) ="addnewTodo(newTodo.value)">Add new to-do</button>
         </form>
        <table>
          <tr>
            <th>label</th>
-           <th>completed</th>
+            <th>Status
+            </th>
            <th>Action</th>
          </tr>
          <tr 
-         *ngFor="let todo of todos">
+         *ngFor="let todo of todos; let i = index">
          <td>{{ todo.label }}</td>
-         <td>{{ todo.completed }}</td>
-         <td>
+         <td>  <mat-checkbox class="example-margin"></mat-checkbox></td>
+         <td> 
            <button (click)= "deleteTodo(todo)">delete</button>
+           <button (click) = "editTodo(i)">edit</button>
          </td>
         </tr>
        </table>

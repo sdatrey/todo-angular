@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-input',
@@ -8,6 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
   inputForm: FormGroup;
+  editingMode: boolean;
+  editingIndex: number;
   todos = [
     {
       label: 'Angular Course',
@@ -17,26 +20,49 @@ export class InputComponent implements OnInit {
       label: 'Clean house',
       completed: true
     }
+    
   ]
 
 
   ngOnInit(){
     this.inputForm = new FormGroup({
-      'to-do': new FormControl(null)
+      todo: new FormControl(null)
     });
+    this.editingMode = false;
 
   }
   addnewTodo(newTodoLabel){
+    if (!this.editingMode) {
     var newTodo= {
       label: newTodoLabel,
       completed: false
     };
     this.todos.push(newTodo);
+  } else {
+    this.todos[this.editingIndex] = {
+      completed: false, label: newTodoLabel
+    }
+    this.editingMode = false;
+    this.editingIndex = -1;
+  }
   }
   deleteTodo(todo){
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
   }
+  todoComplete(){
+
+  }
+  editTodo(index: number){
+    this.editingMode = true;
+    this.editingIndex = index;
+    console.log(index);
+    const todo = this.todos[index];
+    this.inputForm.setValue({
+      todo: todo.label
+    });
+  }
+
 
 
 }
