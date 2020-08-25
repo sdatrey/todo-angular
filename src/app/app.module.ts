@@ -10,11 +10,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { InputComponent } from './input/input.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    LoginComponent
   ],
   imports: [
   
@@ -24,9 +31,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSliderModule,
     FormsModule,
     MatInputModule,
+    MatDialogModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule
+    
 
   
   ],

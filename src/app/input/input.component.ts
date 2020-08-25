@@ -39,12 +39,16 @@ export class InputComponent implements OnInit {
     };
     this.todos.push(newTodo);
   } else {
+    // this.todos[this.editingIndex] = {
+    //   completed: false, label: newTodoLabel
+    // }
     this.todos[this.editingIndex] = {
-      completed: false, label: newTodoLabel
-    }
+      ...this.todos[this.editingIndex], label: newTodoLabel
+    } 
     this.editingMode = false;
     this.editingIndex = -1;
   }
+  this.inputForm.reset();
   }
   deleteTodo(todo){
     const index = this.todos.indexOf(todo);
