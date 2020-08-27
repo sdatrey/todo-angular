@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { state } from '@angular/animations';
+
 
 @Component({
   selector: 'app-input',

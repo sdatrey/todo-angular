@@ -4,10 +4,10 @@
  <mat-tab-group animationDuration="0ms" >
     <mat-tab label="Signup Form">
   <mat-card-content>
-    <form class="example-form" [formGroup]="validatingForm">
+    <form class="example-form" [formGroup]="signupForm">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>username</mat-label>
-          <input matInput placeholder="Ex. sda1506" required>
+          <input matInput placeholder="Ex. sda1506" formControlName="username" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Enter your email</mat-label>
@@ -16,33 +16,34 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" required>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
        
     </form>
-    <button mat-raised-button color="primary" class="card-btn" (click)="gotoList()">Signup</button>
+    <button mat-raised-button color="primary" class="card-btn" (click)="signuptoList()">Signup</button>
   </mat-card-content>
 </mat-tab>
     <mat-tab label="Login">
       <mat-card-content>
-        <form class="example-form" [formGroup]="validatingForm">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>username</mat-label>
-              <input matInput placeholder="Ex. sda1506" required>
-            </mat-form-field>
+        <form class="example-form" [formGroup]="loginForm">
+          <mat-form-field appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" formControlName="email" required>
+          <mat-error hidden="!(email.dirty && email.invalid)">Not a valid credentials..!</mat-error>
+        </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" required>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
            
         </form>
-        <button mat-raised-button color="primary" class="card-btn"  >Login</button>
+        <button mat-raised-button color="primary" class="card-btn" (click)="logintoList()" >Login</button>
       </mat-card-content>
     </mat-tab>
   
