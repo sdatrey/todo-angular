@@ -9,7 +9,9 @@
               <mat-label>Add Todo</mat-label>
               <input matInput placeholder="Ex. Pizza" value="Sushi"
               #newTodo
+              required
               formControlName="todo">
+              <mat-error hidden="!(todo.dirty)">Enter Something</mat-error>
             </mat-form-field>
               <button mat-button (click) ="addnewTodo(newTodo.value)">Add new to-do</button>
         </form>
@@ -18,7 +20,6 @@
            <th>label</th>
             <th>Status
             </th>
-           <th>Action</th>
          </tr>
          <tr 
          *ngFor="let todo of todos; let i = index">

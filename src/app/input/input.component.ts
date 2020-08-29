@@ -19,8 +19,15 @@ export class InputComponent implements OnInit {
     {
       label: 'Clean house',
       completed: true
+    },
+    {
+      label: 'Buy milk',
+      completed: false
+    }, 
+    {
+      label: 'Meeting at 9',
+      completed: true
     }
-    
   ]
 
 
@@ -32,7 +39,8 @@ export class InputComponent implements OnInit {
 
   }
   addnewTodo(newTodoLabel){
-    if (!this.editingMode) {
+   
+        if (!this.editingMode) {
     var newTodo= {
       label: newTodoLabel,
       completed: false
@@ -48,14 +56,12 @@ export class InputComponent implements OnInit {
     this.editingMode = false;
     this.editingIndex = -1;
   }
+    
   this.inputForm.reset();
   }
   deleteTodo(todo){
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
-  }
-  todoComplete(){
-
   }
   editTodo(index: number){
     this.editingMode = true;

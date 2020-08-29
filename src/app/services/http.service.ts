@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
 export class HttpService {
 
   constructor(private http: HttpClient) { }
+    signUp(data: { username:string, email:string, password:string  }){
+          return this.http.post('https://auth-ts.herokuapp.com/api/auth/register' , data)
+    }
    logIn(data: { email:string, password: string }){
-      return this.http.post('https://todo-project-20e1d.firebaseio.com/todo.json',data);
+      return this.http.post('https://auth-ts.herokuapp.com/api/auth/login',data);
   }
   
 }

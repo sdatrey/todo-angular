@@ -31,7 +31,16 @@ export class LoginComponent implements OnInit {
     });
   }
   signuptoList(){
-    this.router.navigate(['/input']);
+    if(this.signupForm.invalid){
+      return console.log('not valid');
+    }
+    this.http.signUp(this.signupForm.value).subscribe(
+      (res) => {
+        console.log(res);
+         this.router.navigate(['/input']);
+      }
+    )
+   
   }
   logintoList() {
     if(this.loginForm.invalid){
