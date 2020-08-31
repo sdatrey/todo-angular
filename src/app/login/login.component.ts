@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     this.http.signUp(this.signupForm.value).subscribe(
       (res) => {
         console.log(res);
+        localStorage.setItem('token',res.token);
          this.router.navigate(['/input']);
       }
     )

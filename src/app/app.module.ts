@@ -40,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatCardModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,
+    
     
 
   

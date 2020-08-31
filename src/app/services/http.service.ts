@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../modals/user.modal';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -8,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
 
   constructor(private http: HttpClient) { }
-    signUp(data: { username:string, email:string, password:string  }){
-          return this.http.post('https://auth-ts.herokuapp.com/api/auth/register' , data)
+    signUp(data: User): Observable<{token:string}>{
+          return this.http.post<{token:string}>('https://auth-ts.herokuapp.com/api/auth/register' , data);
     }
-   logIn(data: { email:string, password: string }){
+   logIn(data: User){
       return this.http.post('https://auth-ts.herokuapp.com/api/auth/login',data);
   }
   
