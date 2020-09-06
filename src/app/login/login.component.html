@@ -20,12 +20,19 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            
+            
           </mat-form-field>
        
     </form>
     <button mat-raised-button color="primary" class="card-btn" (click)="signuptoList()">Signup</button>
+    <button mat-raised-button color="primary" class="card-btn ml-3" (click)= "signupwithOther()" >signupwithOther</button>
+  
   </mat-card-content>
 </mat-tab>
+<div class="container">
+  <mat-spinner mode="indeterminate" *ngIf="isLoading"></mat-spinner>
+</div>  
     <mat-tab label="Login">
       <mat-card-content>
         <form class="example-form" [formGroup]="loginForm">
@@ -44,10 +51,13 @@
            
         </form>
         <button mat-raised-button color="primary" class="card-btn" (click)="logintoList()" >Login</button>
+    
+ 
       </mat-card-content>
     </mat-tab>
-  
+     
   </mat-tab-group>
   
 </mat-card>
 </div>
+ <mat-spinner mode="indeterminate" *ngIf="isLoading"></mat-spinner>

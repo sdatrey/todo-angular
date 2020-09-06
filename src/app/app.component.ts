@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router,Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AppComponent  {
   title: any;
-
+ 
 
   }
 

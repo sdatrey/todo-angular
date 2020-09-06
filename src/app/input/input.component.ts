@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -11,24 +12,12 @@ export class InputComponent implements OnInit {
   inputForm: FormGroup;
   editingMode: boolean;
   editingIndex: number;
-  todos = [
-    {
-      label: 'Angular Course',
-      completed: false
-    },
-    {
-      label: 'Clean house',
-      completed: true
-    },
-    {
-      label: 'Buy milk',
-      completed: false
-    }, 
-    {
-      label: 'Meeting at 9',
-      completed: true
-    }
-  ]
+  todos = [];
+
+  constructor( private http: HttpClient){
+    this.todos = this.getTodos();
+  }
+
 
 
   ngOnInit(){
@@ -38,18 +27,34 @@ export class InputComponent implements OnInit {
     this.editingMode = false;
 
   }
-  addnewTodo(newTodoLabel){
+
+  getTodos(): any {
+    this.http.get('https://auth-ts.herokuapp.com/api/todo/')
+    .subscribe(
+      (res:any) => {
+        this.todos = res.todos;
+        console.log(this.todos);
+      }
+    )
+    return this.todos
+  }
+
+  addnewTodo(newTodoLabel:string){
    
         if (!this.editingMode) {
-    var newTodo= {
-      label: newTodoLabel,
-      completed: false
-    };
-    this.todos.push(newTodo);
+          this.http.post('https://auth-ts.herokuapp.com/api/todo/add',{
+            description: newTodoLabel,
+            completed: false
+          })
+          .subscribe(
+            (res) => {
+              this.todos.push({
+                description: newTodoLabel,
+                completed: false
+              });
+            }
+          );
   } else {
-    // this.todos[this.editingIndex] = {
-    //   completed: false, label: newTodoLabel
-    // }
     this.todos[this.editingIndex] = {
       ...this.todos[this.editingIndex], label: newTodoLabel
     } 

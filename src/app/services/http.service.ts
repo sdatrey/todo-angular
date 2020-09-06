@@ -11,10 +11,12 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
     signUp(data: User): Observable<{token:string}>{
-          return this.http.post<{token:string}>('https://auth-ts.herokuapp.com/api/auth/register' , data);
+          return this.http.post<{token:string}>('https://auth-ts.herokuapp.com/api/auth/register' , data, 
+        );
     }
-   logIn(data: User){
-      return this.http.post('https://auth-ts.herokuapp.com/api/auth/login',data);
+   logIn(data: User): Observable<{token:string}>{
+      return this.http.post<{token:string}>('https://auth-ts.herokuapp.com/api/auth/login',data);
   }
-  
+
+
 }

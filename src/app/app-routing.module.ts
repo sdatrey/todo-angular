@@ -7,7 +7,7 @@ import { InputComponent } from './input/input.component';
 const routes: Routes = [
   {path:'',redirectTo: '/login',pathMatch: 'full' },
   {path:'login', component: LoginComponent},
-  {path: 'input',component: InputComponent}
+  {path: 'todo-list',component: InputComponent}
   
 ];
 

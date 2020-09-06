@@ -14,10 +14,13 @@ export class LoginComponent implements OnInit {
   signupForm: FormGroup;
   loginForm: FormGroup;
   hide = true;
+  isLoading = false;
+ 
  
 
   constructor( private router: Router,
-    private http: HttpService) { }
+    private http: HttpService,
+    private httpclient: HttpClient) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -33,12 +36,17 @@ export class LoginComponent implements OnInit {
   signuptoList(){
     if(this.signupForm.invalid){
       return console.log('not valid');
-    }
+    } this.isLoading = true;
     this.http.signUp(this.signupForm.value).subscribe(
-      (res) => {
+      
+       (res) => {
+       
         console.log(res);
+       
         localStorage.setItem('token',res.token);
-         this.router.navigate(['/input']);
+         this.router.navigate(['/todo-list']);
+         this.isLoading =false;
+         
       }
     )
    
@@ -46,13 +54,39 @@ export class LoginComponent implements OnInit {
   logintoList() {
     if(this.loginForm.invalid){
       return console.log('not valid');
-    }
+    }this.isLoading = true;
     this.http.logIn(this.loginForm.value).subscribe(
       (res) =>  {
-  console.log(res);
-  this.router.navigate(['/input']);
+      
+        console.log(res);
+        
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/todo-list']);
+       this.isLoading = false;
+  }, error => { 
+    this.isLoading= false;
+    console.log(error);
+   
+    alert(error.error.errors[0].msg);
+  
   }
     );
+  }
+  signupwithOther(){
+   this.httpclient.get(
+     'https://auth-ts.herokuapp.com/api/auth/facebook'
+   ).subscribe(
+     (res) => {
+       console.log(res);
+     },  error => { 
+      this.isLoading= false;
+      console.log(error);
+     
+      alert(error.error.errors[0].msg);
+    
+    }
+   );
+
   }
 
 

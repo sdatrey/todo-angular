@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatTabsModule,
     HttpClientModule,
+    MatProgressSpinnerModule
     
     
 
