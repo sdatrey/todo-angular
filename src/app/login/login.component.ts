@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       
         console.log(res);
         
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res);
         this.router.navigate(['/todo-list']);
        this.isLoading = false;
   }, error => { 
@@ -87,6 +87,7 @@ export class LoginComponent implements OnInit {
     }
    );
 
+   
   }
 
 

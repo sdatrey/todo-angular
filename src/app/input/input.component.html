@@ -13,15 +13,15 @@
               formControlName="todo">
               <mat-error hidden="!(todo.dirty)">Enter Something</mat-error>
             </mat-form-field>
-              <button mat-button (click) ="addnewTodo(newTodo.value)">Add new to-do</button>
+              <button mat-button (click) ="addnewTodo()">Add new to-do</button>
         </form>
        <div class="d-flex bd-highlight mb-3 justify-content-around"  *ngFor="let todo of todos; let i = index">
        <span class="mr-auto p-2 bd-highlight">
          {{ todo.description }}
        </span> 
         <mat-checkbox class="p-3 bd-highlight items-center h-25" [(ngModel)]="todo.completed" ></mat-checkbox>
-        <button mat-button class="pb-2 bd-highlight" (click)= "deleteTodo(todo)"><i aria-hidden="true" class="material-icons">delete</i></button>
-           <button mat-button class="pb-2 bd-highlight" (click) = "editTodo(i)">edit</button>
+        <button mat-button class="pb-2 bd-highlight" (click)= "deleteTodo(todo._id)"><i aria-hidden="true" class="material-icons">delete</i></button>
+           <button mat-button class="pb-2 bd-highlight" (click) = "editTodo(todo)">edit</button>
        </div>
       </div>
     </div>
