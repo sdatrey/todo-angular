@@ -18,12 +18,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputComponent,
     LoginComponent
+  
   ],
   imports: [
   
@@ -42,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatTabsModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxCaptchaModule
     
     
 

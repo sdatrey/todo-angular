@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', [Validators.required]),
       email: new FormControl('',[Validators.email, Validators.required] ),
       password: new FormControl('', [Validators.required,Validators.minLength(8)]),
+      recaptcha: new FormControl('', [Validators.required])
     });
     this.loginForm = new FormGroup({
       email: new FormControl('',[Validators.email, Validators.required] ),
       password: new FormControl('', [Validators.required]),
+      recaptcha:  new FormControl ('', [Validators.required])
     });
   }
   signuptoList(){
@@ -89,7 +91,17 @@ export class LoginComponent implements OnInit {
 
    
   }
+  handleReset(){
+    console.log('reset');
+  }
 
-
-
+  handleExpire(){
+    console.log('expire');
+  }
+  handleLoad(){
+    console.log('load');
+  }
+  handleSuccess(event){
+    console.log(event);
+  }
 }
