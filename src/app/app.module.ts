@@ -19,6 +19,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { StoreModule } from '@ngrx/store';
+import {todoReducer} from './store/reducer/todo.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -26,13 +30,11 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AppComponent,
     InputComponent,
     LoginComponent
-  
   ],
   imports: [
-  
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatSliderModule,
     FormsModule,
     MatInputModule,
@@ -46,11 +48,9 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     MatTabsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    NgxCaptchaModule
-    
-    
-
-  
+    NgxCaptchaModule,
+    StoreModule.forRoot({todo: todoReducer}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

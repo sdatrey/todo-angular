@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { TodoService } from '../services/todo.services';
 import { Todo } from '../modals/todo.modal';
 import { Observable } from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -15,23 +17,26 @@ export class InputComponent implements OnInit  {
   inputForm: FormGroup;
   editingMode: boolean;
   editingId: string;
-  todos = [];
- constructor(private todoservice: TodoService){
-  
+  todos: Observable<Todo[]>;
+ constructor(private todoService: TodoService,  private store: Store<{todo: { todos: Todo[] }}>){
  }
 
  ngOnInit(): void {
    this.inputForm = new FormGroup({
-    todo: new FormControl('',[Validators.required])
+    todo: new FormControl('', [Validators.required])
    });
-  this.getTodos();
+   this.todos = this.store.select('todo').pipe(
+     map((res) => res.todos)
+   );
+   console.log(this.todos);
+   this.getTodos();
  }
  addnewTodo(){
-  if(this.inputForm.invalid){
+  if (this.inputForm.invalid){
     return console.log('not valid');
   }
   if (this.editingMode) {
-    this.todoservice.updateTodo({
+    this.todoService.updateTodo({
       _id: this.editingId,
       description: this.inputForm.value.todo,
       completed: false,
@@ -40,29 +45,29 @@ export class InputComponent implements OnInit  {
       this.getTodos();
     });
   } else {
-   this.todoservice.addTodo(this.inputForm.value.todo)
+   this.todoService.addTodo(this.inputForm.value.todo)
    .subscribe(
       (res) => {
-       this.todos.push(res)
+       // this.todos.push(res);
       }
-   )
-     this.getTodos();
-    }
-    this.inputForm.reset();
+   );
+   this.getTodos();
+  }
+  this.inputForm.reset();
  }
  getTodos() {
-  this.todoservice.getTodo().subscribe(
-    (res) =>{
-      this.todos = res;
+  this.todoService.getTodo().subscribe(
+    (res) => {
+      // this.todos = res;
     }
-  )
+  );
  }
  deleteTodo(id: string){
-  this.todoservice.delTodo(id).subscribe(
+  this.todoService.delTodo(id).subscribe(
    (res) => {
     alert(res.msg);
     this.getTodos();
-   } 
+   }
   );
  }
  editTodo(todo: Todo) {

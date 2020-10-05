@@ -1,5 +1,4 @@
 import { Injectable, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../modals/todo.modal';
 import { map } from 'rxjs/operators';
@@ -10,15 +9,13 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
   })
   export class TodoService{
-  
-    constructor( private http: HttpClient){
+  constructor( private http: HttpClient){
     }
-  
-  addTodo(todotitle: string){
-    return this.http.post('https://auth-ts.herokuapp.com/api/todo/add',{
+    addTodo(todotitle: string){
+    return this.http.post('https://auth-ts.herokuapp.com/api/todo/add', {
       description: todotitle,
       completed: false
-    })
+    });
   }
   getTodo(): Observable<Todo[]> {
     return this.http.get<{todos: Todo[]}>('https://auth-ts.herokuapp.com/api/todo/').pipe(
