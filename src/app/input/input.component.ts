@@ -5,6 +5,7 @@ import { TodoService } from '../services/todo.services';
 import { Todo } from '../modals/todo.modal';
 import { Observable } from 'rxjs';
 import {select, Store} from '@ngrx/store';
+import * as TodoListActions from '../store/action/todo.action';
 import {map} from 'rxjs/operators';
 
 
@@ -45,12 +46,12 @@ export class InputComponent implements OnInit  {
       this.getTodos();
     });
   } else {
-   this.todoService.addTodo(this.inputForm.value.todo)
-   .subscribe(
-      (res) => {
-       // this.todos.push(res);
-      }
-   );
+   // this.todoService.addTodo(this.inputForm.value.todo)
+   // .subscribe(
+   //    (res) => {
+   //     this.todos.push(res);
+   //    }
+   this.store.dispatch(new TodoListActions.AddTodo({_id: '5', completed: false, description: 'Test'}));
    this.getTodos();
   }
   this.inputForm.reset();

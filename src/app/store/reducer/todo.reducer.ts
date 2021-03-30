@@ -12,13 +12,18 @@ const initialState: TodoState = {
   ]
 };
 
-export function todoReducer(state = initialState, action: TodoAction.AddTodo){
+export function todoReducer(state = initialState, action: TodoAction.TodoListActions){
   switch (action.type){
     case TodoAction.addTodo:
-      return{
-        ...state,
-        todo: [...state.todos, action.payload]
+      return {
+        todos: [...state.todos, action.payload ]
       };
+    case TodoAction.updateTodo:
+      const todo = state.todos[action.payload.id];
+      const updatedTodo
+      return {
+
+      }
     default:
       return state;
   }

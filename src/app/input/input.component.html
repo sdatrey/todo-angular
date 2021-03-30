@@ -15,7 +15,7 @@
             </mat-form-field>
               <button mat-button (click) ="addnewTodo()">Add new to-do</button>
         </form>
-       <div class="d-flex bd-highlight mb-3 justify-content-around"  *ngFor="let todo of (todos | async); let i = index">
+       <div class="d-flex bd-highlight mb-3 justify-content-around"  *ngFor="let todo of (todos | async); let i = index" >
        <span class="mr-auto p-2 bd-highlight">
          {{ todo.description }}
        </span>

@@ -1,39 +1,39 @@
-<div class="container">
+  <div class="container">
 
-  <mat-card class="example-card">
-    <mat-tab-group animationDuration="0ms">
-      <mat-tab label="Signup Form">
-        <mat-card-content>
-          <form class="signup-form" [formGroup]="signupForm">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>username</mat-label>
-              <input matInput placeholder="Ex. sda1506" formControlName="username" required>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your email</mat-label>
-              <input matInput placeholder="pat@example.com" formControlName="email" required>
-              <mat-error hidden="!(email.dirty && email.invalid)">Not a valid credentials..!</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your password</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                      [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <ngx-recaptcha2 #captchaElem
-                              [siteKey]="'6LeMecsZAAAAAPHmoWC8-e9nHTYtn3BMbj8EHTJo'"
-                              (reset)="handleReset()"
-                              (expire)="handleExpire()"
-                              (load)="handleLoad()"
-                              (success)="handleSuccess($event)"
-                              formControlName="recaptcha">
-              </ngx-recaptcha2>
+    <mat-card class="example-card">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Signup Form">
+          <mat-card-content>
+            <form class="signup-form" [formGroup]="signupForm">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>username</mat-label>
+                <input matInput placeholder="Ex. sda1506" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" required>
+                <mat-error hidden="!(email.dirty && email.invalid)">Not a valid credentials..!</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <ngx-recaptcha2 #captchaElem
+                                [siteKey]="'6LeMecsZAAAAAPHmoWC8-e9nHTYtn3BMbj8EHTJo'"
+                                (reset)="handleReset()"
+                                (expire)="handleExpire()"
+                                (load)="handleLoad()"
+                                (success)="handleSuccess($event)"
+                                formControlName="recaptcha">
+                </ngx-recaptcha2>
 
-            </mat-form-field>
+              </mat-form-field>
 
-          </form>
-          <button mat-raised-button color="primary" class="card-btn" (click)="signuptoList()">Signup</button>
+            </form>
+            <button mat-raised-button color="primary" class="card-btn" (click)="signuptoList()">Signup</button>
           <button mat-raised-button color="primary" class="card-btn ml-3" (click)="signupwithOther()">signupwithOther
           </button>
 
